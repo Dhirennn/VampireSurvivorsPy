@@ -21,7 +21,7 @@ class Game:
         self.setup_game_tiles()
 
         # Sprites
-        self.player = Player((WINDOW_WIDTH/2, WINDOW_HEIGHT/2), self.all_sprites, self.collision_sprites)
+        self.player = Player((500, 300), self.all_sprites, self.collision_sprites)
 
         # Create collision objects
         # for i in range(8):
@@ -35,11 +35,13 @@ class Game:
     def setup_game_tiles(self):
         map = load_pygame(join('data', 'maps', 'world.tmx'))
         
+        # Render tiles (non-collision objects)
+        for x, y, image in map.get_layer_by_name('Ground').tiles():
+            NonCollisionSprite((x*TILE_SIZE, y*TILE_SIZE), image, self.all_sprites)
+
+        # Render collision objects
         for obj in map.get_layer_by_name('Objects'):
-            
             CollisionSprite((obj.x, obj.y), obj.image, (self.all_sprites, self.collision_sprites))
-
-
 
 
 
