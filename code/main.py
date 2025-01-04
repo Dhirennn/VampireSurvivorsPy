@@ -22,7 +22,7 @@ class Game:
         self.setup_game_tiles()
 
         # Sprites
-        self.player = Player((500, 300), self.all_sprites, self.collision_sprites)
+        # self.player = Player((500, 300), self.all_sprites, self.collision_sprites)
 
         # Create collision objects
         # for i in range(8):
@@ -49,6 +49,11 @@ class Game:
             # print(obj)
             CollisionSprite((obj.x, obj.y), pygame.Surface((obj.width, obj.height)), self.collision_sprites)
 
+        # Markers
+        for obj in map.get_layer_by_name('Entities'):
+            
+            if obj.name == 'Player':
+                self.player = Player((obj.x, obj.y), self.all_sprites, self.collision_sprites)
 
 
 

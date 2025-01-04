@@ -6,6 +6,7 @@ class NonCollisionSprite(pygame.sprite.Sprite):
         super().__init__(groups)
         self.image = surface
         self.rect = self.image.get_frect(topleft = pos)
+        self.ground = True
 
 
 class CollisionSprite(pygame.sprite.Sprite):
